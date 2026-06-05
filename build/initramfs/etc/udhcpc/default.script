@@ -1,0 +1,28 @@
+#!/bin/sh
+
+case "$1" in
+    bound|renew)
+        ip addr flush dev "$interface"
+        ip addr add "$ip/$subnet" dev "$interface"
+        ip link set "$interface" up
+
+        ip route del default 2>/dev/null
+
+        if [ -n "$router" ]; then
+            for r in $router; do
+                ip route add default via "$r" dev "$interface"
+                break
+            done
+        fi
+
+        if [ -n "$dns" ]; then
+            mkdir -p /etc
+						echo "# Static DNS configuration." > /etc/resolv.conf
+            for ns in $dns; do
+                echo "nameserver $ns" >> /etc/resolv.conf
+            done
+        fi
+        ;;
+esac
+
+exit 0
