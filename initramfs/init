@@ -1,9 +1,19 @@
 #!/bin/sh
 
-mkdir /dev /proc /sys
+mkdir -p /dev /proc /sys
 
 mount -t devtmpfs none /dev/
 mount -t proc none /proc/
 mount -t sysfs none /sys/
+
+mkdir -p /usr/local/bin
+
+export PATH=/bin:/sbin:/usr/local/bin:/usr/bin:/usr/sbin
+export PYTHONHOME=/usr
+export PYTHONPATH=/usr/lib/python3.14:/usr/lib/python3.14/site-packages
+
+ln -s /usr/bin/python3 /usr/local/bin/python3
+ln -s /usr/bin/python3 /usr/local/bin/python3.14
+ln -s /usr/bin/python3 /usr/local/bin/python
 
 exec setsid cttyhack /bin/sh
