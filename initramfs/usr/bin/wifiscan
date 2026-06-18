@@ -1,0 +1,8 @@
+#!/bin/sh
+
+WIFI_IFACE="${1:-wlan0}"
+
+# Ensures that the wifi interface is enabled.
+ip link set $WIFI_IFACE up
+
+iw dev $WIFI_IFACE scan | grep -e "SSID:" | grep -Ev "HESSID:|BSSID:"
