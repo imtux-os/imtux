@@ -1,0 +1,6 @@
+#!/bin/sh
+
+ETH_IFACE="${1:-eth0}"
+
+ip link set ${ETH_IFACE} down
+echo "Interface $ETH_IFACE desativada."

@@ -4,5 +4,7 @@ ETH_IFACE="${1:-eth0}"
 
 # Ensures that the ethernet interface is enabled.
 ip link set ${ETH_IFACE} up
+echo "Interface $ETH_IFACE ativada..."
 
 udhcpc -i ${ETH_IFACE} -s /etc/udhcpc/default.script
+echo "Conexão estabelecida com sucesso."
