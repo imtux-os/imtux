@@ -1,0 +1,1 @@
+alias fastfetch='fastfetch -c /usr/share/fastfetch/config.jsonc'
