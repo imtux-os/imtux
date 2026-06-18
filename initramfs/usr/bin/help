@@ -1,0 +1,15 @@
+#!/bin/sh
+
+BOLD='\033[1m'
+RESET='\033[0m'
+
+echo -e "\n${BOLD}[Ajuda]${RESET}"
+
+echo -e "COMANDOS RÁPIDOS:"
+echo -e "Para Ajuda:\n$ help"
+echo -e "\nAbrir o menu principal:\n$ menu"
+
+echo -e "\nAtivar a interface Ethernet:\n$ ethup"
+echo -e "\nDesativar a interface Ethernet:\n$ ethdown"
+
+echo -e "\nListar redes Wi-Fi disponíveis:\n$ wifiscan"

@@ -1,0 +1,100 @@
+#!/bin/sh
+
+BOLD='\033[1m'
+RESET='\033[0m'
+
+ethernet_menu() {
+	while true; do
+		# Ethernet options
+		echo -e "\n${BOLD}[Ethernet]${RESET}"
+		echo "1) Ativar conexão"
+		echo "2) Desativar conexão"
+		echo "3) Voltar"
+		echo "4) Sair"
+		read -p "Opção: " option
+
+		if [ $option -eq 1 ] 2> /dev/null; then
+			ethup
+		elif [ $option -eq 2 ] 2> /dev/null; then
+			ethdown
+		elif [ $option -eq 3 ] 2> /dev/null; then
+			break
+		elif [ $option -eq 4 ] 2> /dev/null; then
+			exit 0
+		else
+			echo -e "\nOpção inválida."
+		fi	
+	done
+}
+
+wifi_menu() {
+	while true; do
+		# Wi-Fi options
+		echo -e "\n${BOLD}[Wi-Fi]${RESET}"
+		echo "1) Listar redes Wi-Fi disponíveis"
+		echo "2) Realizar conexão Wi-Fi"
+		echo "3) Desativar Wi-Fi"
+		echo "4) Voltar"
+		echo "5) Sair"
+		read -p "Opção: " option
+
+		if [ $option -eq 1 ] 2> /dev/null; then
+			wifiscan
+		elif [ $option -eq 2 ] 2> /dev/null; then
+			# wifiup
+			echo "Selecionado Realizar conexão Wi-Fi"
+		elif [ $option -eq 3 ] 2> /dev/null; then
+			# wifidown
+			echo "Selecionado Desativar Wi-Fi"
+		elif [ $option -eq 4 ] 2> /dev/null; then
+			break
+		elif [ $option -eq 5 ] 2> /dev/null; then
+			exit 0
+		else
+			echo -e "\nOpção inválida."
+		fi	
+	done
+}
+
+network_menu() {
+	while true; do
+		# Network options
+		echo -e "\n${BOLD}[Configurações de Rede]${RESET}"
+		echo "1) Wi-Fi"
+		echo "2) Ethernet"
+		echo "3) Voltar"
+		echo "4) Sair"
+		read -p "Opção: " option
+
+		if [ $option -eq 1 ] 2> /dev/null; then
+			wifi_menu
+		elif [ $option -eq 2 ] 2> /dev/null; then
+			ethernet_menu
+		elif [ $option -eq 3 ] 2> /dev/null; then
+			break
+		elif [ $option -eq 4 ] 2> /dev/null; then
+			exit 0
+		else
+			echo -e "\nOpção inválida."
+		fi	
+	done
+}
+
+# Main menu
+while true; do
+	echo -e "\n${BOLD}[Menu principal]${RESET}"
+	echo "1) Configurações de Rede"
+	echo "2) Ajuda"
+	echo "3) Sair"
+	read -p "Opção: " option
+
+	if [ $option -eq 1 ] 2> /dev/null; then
+		network_menu
+	elif [ $option -eq 2 ] 2> /dev/null; then
+		help
+	elif [ $option -eq 3 ] 2> /dev/null; then
+		break
+	else
+		echo -e "\nOpção inválida."
+	fi	
+done
