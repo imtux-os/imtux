@@ -1,4 +1,4 @@
-# IMTux
+# IMTUX
 
 ## Members
 | Name | RA |
